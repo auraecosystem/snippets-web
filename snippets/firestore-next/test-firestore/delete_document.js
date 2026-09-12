@@ -5,7 +5,11 @@
 // 'npm run snippets'.
 
 // [START delete_document_modular]
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
 
-await deleteDoc(doc(db, "cities", "DC"));
-// [END delete_document_modular]
+const cityRef = doc(db, 'cities', 'BJ');
+
+// Remove the 'capital' field from the document
+await updateDoc(cityRef, {
+    capital: deleteField()
+});
